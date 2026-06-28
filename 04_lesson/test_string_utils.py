@@ -86,7 +86,7 @@ def test_contains_negative(str1, str2, result):
 
 
 @pytest.mark.parametrize("input_txt, symbol, expected", [
-    ("SkyPro", "S", True),
+    ("SkyPro", "S", "kyPro"),
     ("SkyPro", "k", "SyPro"),
     ("SkyPro", "ro", "SkyP"),
     ("12345", "4", "1235"),

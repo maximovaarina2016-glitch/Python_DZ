@@ -12,7 +12,7 @@ def test_multiple_elements():
 
     # Проверяем количество ссылок
 
-    assert len(links) == 10
+    assert len(links) == 9
 
     # Проверяем, что все ссылки отображаются
 

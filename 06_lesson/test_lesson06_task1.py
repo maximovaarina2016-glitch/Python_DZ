@@ -37,6 +37,4 @@ print(f"Скриншот сохранен как {screenshot_path}")
 
 time.sleep(2)
 
-print(f"Произошла ошибка: {e}")
-
 driver.quit()

@@ -16,7 +16,6 @@ def test_lesson06_task1():
     )
     start_button.click()
 
-
     hello_world_element = WebDriverWait(driver, 20).until(
         EC.visibility_of_element_located((By.ID, "finish"))
     )

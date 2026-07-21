@@ -11,7 +11,7 @@ URL = "https://bonigarcia.dev/selenium-webdriver-java/slow-calculator.html"
 DELAY_VALUE = "45"
 EXPECTED_RESULT = "15"
 CALCULATOR_DELAY_SECONDS = 45
-WAIT_TIMEOUT_SECONDS = CALCULATOR_DELAY_SECONDS + 60
+WAIT_TIMEOUT_SECONDS = CALCULATOR_DELAY_SECONDS + 20
 
 
 @pytest.fixture(scope="function")
@@ -42,32 +42,33 @@ def test_calculator(browser):
     delay_input.send_keys(DELAY_VALUE)
 
     actions_data = [
-        ("7", 'button[data-key="7"]'),
-        ("+", 'button[data-key="+"]'),
-        ("8", 'button[data-key="8"]'),
-        ("=", 'button[data-key="="]'),
+        ("7", "//span[text()='7']"),
+        ("+", "//span[text()='+']"),
+        ("8", "//span[text()='8']"),
+        ("=", "//span[text()='=']"),
     ]
 
-    for _, selector in actions_data:
-        btn = WebDriverWait(driver, 100).until(
-            EC.element_to_be_clickable((By.CSS_SELECTOR, selector))
+    for button_text, selector in actions_data:
+        btn = WebDriverWait(driver, 45).until(
+            EC.element_to_be_clickable((By.XPATH, selector))
         )
+        print(f"Нажата кнопка: {button_text}")
         btn.click()
 
-    result_field_locator = (By.CSS_SELECTOR, ".screen")
+    res_field_locator = (By.CSS_SELECTOR, ".screen")
 
     wait.until(
-        EC.text_to_be_present_in_element(result_field_locator, EXPECTED_RESULT)
+        EC.text_to_be_present_in_element(res_field_locator, EXPECTED_RESULT)
     )
 
     screen_element = wait.until_not(
-        EC.invisibility_of_element_located(result_field_locator)
+        EC.visibility_of_element_located(res_field_locator)
     )
 
-    actual_result = screen_element.text.strip()
+    actual_res = screen_element.text.strip()
 
-    driver.save_screenshot("error.png")
+    driver.save_screenshot("success.png")
 
     assert (
-        actual_result == EXPECTED_RESULT
-    ), f"Проверка провалена. Ожидалось число '{EXPECTED_RESULT}', но отобразилось '{actual_result}'."
+        actual_res == EXPECTED_RESULT
+    ), f"Ожидалось число '{EXPECTED_RESULT}',а отобразилось '{actual_res}'."

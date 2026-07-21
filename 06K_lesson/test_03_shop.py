@@ -1,7 +1,6 @@
 from selenium import webdriver
 from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
@@ -47,11 +46,11 @@ def test_shop():
         wait.until(EC.element_to_be_clickable((By.ID, "first-name")))
 
         first_name = driver.find_element(By.CSS_SELECTOR, "#first-name")
-        first_name.send_keys("Anna")
+        first_name.send_keys("Arina")
         last_name = driver.find_element(By.CSS_SELECTOR, "#last-name")
-        last_name.send_keys("Luzanova")
+        last_name.send_keys("Yudushkina")
         postal_code = driver.find_element(By.CSS_SELECTOR, "#postal-code")
-        postal_code.send_keys("165210")
+        postal_code.send_keys("173051")
         continue_button = driver.find_element(By.CSS_SELECTOR, "#continue")
         continue_button.click()
 

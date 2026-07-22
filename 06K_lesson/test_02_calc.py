@@ -61,10 +61,7 @@ def test_calculator(browser):
         EC.text_to_be_present_in_element(res_field_locator, EXPECTED_RESULT)
     )
 
-    screen_element = wait.until_not(
-        EC.visibility_of_element_located(res_field_locator)
-    )
-
+    screen_element = driver.find_element(*res_field_locator)
     actual_res = screen_element.text.strip()
 
     driver.save_screenshot("success.png")

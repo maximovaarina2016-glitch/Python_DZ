@@ -16,7 +16,7 @@ class MainShopPage:
             By.NAME, "add-to-cart-sauce-labs-onesie")
     
     def __init__(self, driver):
-        self.driver.get = driver
+        self.driver = driver
         self.wait = WebDriverWait(self.driver, 10)
 
     def open_profile_page(self):
@@ -47,7 +47,7 @@ class MainShopPage:
     def go_to_cart(self):
         cart_btn = (By.ID, "shopping_cart_container")
         self.wait.until(EC.element_to_be_clickable(cart_btn)).click()
-        from .cart_page import CartPage
+        from .shop_page import CartPage
         return CartPage(self.driver)
     
 class CartPage:

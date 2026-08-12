@@ -1,10 +1,9 @@
 import pytest
-from sqlalchemy import select
+from sqlalchemy import select, update
 from models import Base, Student
 from conftest import engine
 
 Base.metadata.create_all(bind=engine)
-
 
 @pytest.mark.usefixtures("db_session")
 class TestStudentCRUD:

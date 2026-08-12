@@ -5,6 +5,7 @@ from conftest import engine
 
 Base.metadata.create_all(bind=engine)
 
+
 @pytest.mark.usefixtures("db_session")
 class TestStudentCRUD:
     def test_create_student(self, db_session):
